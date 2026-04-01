@@ -1,4 +1,5 @@
 import express from "express";
+import { myMiddleware } from "./middlewares/my-middleware";
 
 const PORT = 3333
 
@@ -6,6 +7,9 @@ const app = express()
 
 // habilitar o uso de json no express
 app.use(express.json())
+
+//usando o middleware em todas as rotas 
+app.use(myMiddleware)
 
 // rota raiz com query params 
 app.get("/products", (req, res) => {
