@@ -8,7 +8,7 @@ const app = express()
 // habilitar o uso de json no express
 app.use(express.json())
 
-//usando o middleware em todas as rotas 
+//usando o middleware (global) em todas as rotas deve ser colocado antes delas 
 app.use(myMiddleware)
 
 // rota raiz com query params 
@@ -26,7 +26,7 @@ app.post("/products", (req, res) => {
 //res.send(`Produto: ${name} | Preço: ${price}`)
 
 //da pra passar a reposta direto em json, sem precisar fazer stringfy
-    res.status(201).json({name,price})
+    res.status(201).json({name,price,userId: req.userId})
 })
 
 // inicializa o servidor

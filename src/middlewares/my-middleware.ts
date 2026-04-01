@@ -7,6 +7,9 @@ export function myMiddleware(
     res: Response,
     next: NextFunction
 ) {
+    //passando um parametro para a requisição
+    req.userId = "123"
+
     console.log("Middleware executado")
     return next()
 }
