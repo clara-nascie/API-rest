@@ -1,5 +1,6 @@
 import {Request, Response} from "express"
 import {AppError} from "../../utils/App-Error"
+import {z} from "zod"
 
 class ProductsController {
 /**
@@ -20,9 +21,18 @@ class ProductsController {
     }   
 
     create(req: Request, res: Response){
-            // body params: { "name": "Product 1", "price": 10 }
-            const {name,price} = req.body
 
+
+            //criando schema de validação
+            const bodySchema = z.object({
+                name: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
+                price: z.number().positive("Preço deve ser maior que 0"),
+            })
+
+            //validando o body
+            const {name,price} = bodySchema.parse(req.body)
+
+           /* METODO REPETITIVO, PODE SER FEITO USANDO ZOD
             //verificando se o produto existe
             if(!price){
                 throw new AppError("Preço é obrigatório")
@@ -35,6 +45,7 @@ class ProductsController {
 
             //comentado para nao dar erro
             //throw new AppError("Erro ao criar produto")
+            */
 
             //da pra passar a reposta direto em json, sem precisar fazer stringfy
             res.status(201).json({name,price,userId: req.userId})
