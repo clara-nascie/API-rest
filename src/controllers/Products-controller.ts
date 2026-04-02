@@ -1,5 +1,5 @@
 import {Request, Response} from "express"
-import {AppError} from "../../utils/AppError"
+import {AppError} from "../../utils/App-Error"
 
 class ProductsController {
 /**
@@ -24,9 +24,15 @@ class ProductsController {
             const {name,price} = req.body
 
             //verificando se o produto existe
-            if(!name || !price){
-                throw new AppError("Nome e preço são obrigatórios")
+            if(!price){
+                throw new AppError("Preço é obrigatório")
             }
+
+             //verificando se o produto existe
+            if(!name){
+                throw new AppError("Nome é obrigatório")
+            }
+
             //comentado para nao dar erro
             //throw new AppError("Erro ao criar produto")
 
