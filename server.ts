@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import { routes } from "./src/routes";
 import { AppError } from "./utils/App-Error";
+import { ZodError } from "zod";
 
 const PORT = 3333
 
@@ -23,6 +24,12 @@ app.use((error: any, req: Request, res: Response, _: NextFunction) => {
     if(error instanceof AppError){
         return res.status(error.statusCode).json({message: error.message})
     }
+
+    //verificando se o erro é uma instancia de ZodError
+    if(error instanceof ZodError){
+        return res.status(400).json({message: "Erro de validação", issues:error.format()})
+    }
+
     // se não for uma instancia de AppError, retorna um erro 500
     return res.status(500).json({message: "Internal server error"})
 })
