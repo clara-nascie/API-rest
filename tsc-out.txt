@@ -1,0 +1,6 @@
+src/controllers/products-controller.ts(2,24): error TS2307: Cannot find module '../utils/AppError' or its corresponding type declarations.
+src/routes/products-routes.ts(3,36): error TS1261: Already included file name 'C:/Users/Clara/Desktop/PROJETOS CLARA/API-rest/src/controllers/products-controller.ts' differs from file name 'C:/Users/Clara/Desktop/PROJETOS CLARA/API-rest/src/controllers/Products-controller.ts' only in casing.
+  The file is in the program because:
+    Imported via "../controllers/products-controller" from file 'C:/Users/Clara/Desktop/PROJETOS CLARA/API-rest/src/routes/products-routes.ts'
+    Matched by default include pattern '**/*'
+  File is CommonJS module because 'C:/Users/Clara/Desktop/PROJETOS CLARA/API-rest/package.json' does not have field "type"

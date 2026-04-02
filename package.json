@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "author": "Clara Nascimento",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch server.ts"
   },
   "license": "ISC",
   "devDependencies": {

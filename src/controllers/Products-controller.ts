@@ -1,4 +1,5 @@
 import {Request, Response} from "express"
+import {AppError} from "../../utils/AppError"
 
 class ProductsController {
 /**
@@ -21,7 +22,8 @@ class ProductsController {
     create(req: Request, res: Response){
             // body params: { "name": "Product 1", "price": 10 }
             const {name,price} = req.body
-            //res.send(`Produto: ${name} | Preço: ${price}`)
+
+            throw new AppError("Erro ao criar produto")
 
             //da pra passar a reposta direto em json, sem precisar fazer stringfy
             res.status(201).json({name,price,userId: req.userId})
