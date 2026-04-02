@@ -23,9 +23,9 @@ class ProductsController {
     create(req: Request, res: Response){
 
 
-            //criando schema de validação
+            //criando schema de validação usando ZOD
             const bodySchema = z.object({
-                name: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
+                name: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres"),
                 price: z.number().positive("Preço deve ser maior que 0"),
             })
 
