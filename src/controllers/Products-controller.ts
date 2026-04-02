@@ -23,7 +23,12 @@ class ProductsController {
             // body params: { "name": "Product 1", "price": 10 }
             const {name,price} = req.body
 
-            throw new AppError("Erro ao criar produto")
+            //verificando se o produto existe
+            if(!name || !price){
+                throw new AppError("Nome e preço são obrigatórios")
+            }
+            //comentado para nao dar erro
+            //throw new AppError("Erro ao criar produto")
 
             //da pra passar a reposta direto em json, sem precisar fazer stringfy
             res.status(201).json({name,price,userId: req.userId})
