@@ -1,0 +1,40 @@
+import {Request, Response} from "express"
+
+class ProductsController {
+/**
+ * MAXIMO DE 5 METODOS POR CONTROLLER
+ * INDEX - LISTAR TODOS OS RECURSOS
+ * SHOW - LISTAR UM RECURSO ESPECIFICO
+ * CREATE - POST PARA CRIAR UM RECURSO
+ * UPDATE - PUT OU PATCH PARA ATUALIZAR UM RECURSO
+ * DELETE - DELETE PARA DELETAR UM RECURSO
+ */
+    index(req: Request, res: Response){
+         // query params: ?page=1&limit=10
+            const {page,limit} = req.query
+        
+            //passando parametros diretamente na rota
+            res.send(`Página: ${page} | Limite: ${limit}`)
+        
+    }   
+
+    create(req: Request, res: Response){
+            // body params: { "name": "Product 1", "price": 10 }
+            const {name,price} = req.body
+            //res.send(`Produto: ${name} | Preço: ${price}`)
+
+            //da pra passar a reposta direto em json, sem precisar fazer stringfy
+            res.status(201).json({name,price,userId: req.userId})
+
+    }
+
+    update(){
+        
+    }
+
+    delete(){
+        
+    }
+}
+
+export {ProductsController}
